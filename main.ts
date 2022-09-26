@@ -155,6 +155,10 @@ function imAnOldMan () {
     blockObject.setAnyProperty(oldman2, AnyProp.Choice2, noMoneyForyou())
     return oldman1
 }
+function sad_ending () {
+    sad_ending2 = createScript("pineapple", "die!!!!", 0)
+    return sad_ending2
+}
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
     if (choiceIndex == 0) {
         choiceIndex = 1
@@ -180,6 +184,7 @@ let newScript: blockObject.BlockObject = null
 let nomoneyForyou3: blockObject.BlockObject = null
 let nomoneyForyou2: blockObject.BlockObject = null
 let nomoneyForyou1: blockObject.BlockObject = null
+let sad_ending2: blockObject.BlockObject = null
 let oldman2: blockObject.BlockObject = null
 let oldman1: blockObject.BlockObject = null
 let printingStuff = false
