@@ -138,12 +138,15 @@ function printCurrentScript () {
         }
     })
 }
+/**
+ */
 function imAnOldMan () {
     oldman1 = createScript("Mr. Kao", "I'm just an old man and I spent all my money gambling, please help me!!!", 3)
     oldman2 = createScript("Pineapple", "OK, just give me $2 and I will get you water", 3)
     blockObject.setAnyProperty(oldman1, AnyProp.NextPage, oldman2)
     blockObject.setStringArrayProperty(oldman2, StrArrayProp.Choices, ["OK here's $2!", "NO MONEY FOR YOU!!"])
-    blockObject.setAnyProperty(oldman2, AnyProp.Choice1, happyEnding())
+    blockObject.setAnyProperty(oldman1, AnyProp.Choice1, happyEnding())
+    blockObject.setAnyProperty(oldman2, AnyProp.Choice2, noMoneyForyou())
     return oldman1
 }
 controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
@@ -152,6 +155,14 @@ controller.down.onEvent(ControllerButtonEvent.Pressed, function () {
         updateChoices()
     }
 })
+function noMoneyForyou () {
+    nomoneyForyou1 = createScript("Mr. Kao", "I'm tired of you asking me for money! Go AWAY!", 2)
+    nomoneyForyou2 = createScript("pineapple", "OK.I'll give you a deal! buy two get one free!", 3)
+    nomoneyForyou3 = createScript("pineapple", "$4 for 2 waters and cheetos!", 0)
+    blockObject.setAnyProperty(nomoneyForyou1, AnyProp.NextPage, nomoneyForyou2)
+    blockObject.setAnyProperty(nomoneyForyou2, AnyProp.NextPage, nomoneyForyou3)
+    return nomoneyForyou1
+}
 function createScript (characterName: string, text: string, portrait: number) {
     newScript = blockObject.create()
     blockObject.setStringProperty(newScript, StrProp.Name, characterName)
@@ -160,6 +171,9 @@ function createScript (characterName: string, text: string, portrait: number) {
     return newScript
 }
 let newScript: blockObject.BlockObject = null
+let nomoneyForyou3: blockObject.BlockObject = null
+let nomoneyForyou2: blockObject.BlockObject = null
+let nomoneyForyou1: blockObject.BlockObject = null
 let oldman2: blockObject.BlockObject = null
 let oldman1: blockObject.BlockObject = null
 let printingStuff = false
